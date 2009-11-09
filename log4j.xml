@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.SimpleLayout"></layout>
+	</appender>
+	<logger name="org.opencsta.server.CSTAServer">
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+	</logger>
+        	<logger name="org.opencsta.server.SkelCSTAServer">
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+	</logger>
+        	<logger name="org.opencsta.server.SkelCSTA_Link">
+		<level value="INFO"/>
+		<appender-ref ref="stdout"/>
+	</logger>
+	<root>
+		<priority value="debug"></priority>
+		<appender-ref ref="stdout"/>
+	</root>
+</log4j:configuration>
