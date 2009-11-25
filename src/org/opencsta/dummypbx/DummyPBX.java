@@ -17,8 +17,8 @@ This file is part of Open CSTA.
 
 package org.opencsta.dummypbx;
 
-import com.managedservicesaustralia.asterisk.AsteriskController;
-import com.managedservicesaustralia.asterisk.AsteriskInterest;
+import org.opencsta.servicetools.asterisk.AsteriskController;
+import org.opencsta.servicetools.asterisk.AsteriskInterest;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;

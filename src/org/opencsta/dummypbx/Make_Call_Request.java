@@ -17,7 +17,7 @@ This file is part of Open CSTA.
 
 package org.opencsta.dummypbx;
 
-import com.managedservicesaustralia.asterisk.AsteriskInterest;
+import org.opencsta.servicetools.asterisk.AsteriskInterest;
 import org.opencsta.servicedescription.objects.cstaparamtypes.deviceidentifiers.DeviceID;
 
 /**
