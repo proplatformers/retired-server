@@ -36,6 +36,10 @@ public class CSTAServer implements NetworkServer,Runnable{
     private static CSTAServer server ;
     private static TDSServer TDSserver ;
     private static Calendar timeStarted ;
+    private static String CSTA_username ;
+    private static String CSTA_password ;
+
+
     /**
      * OS-CSTA-DD1:invoke2client maps an invoke id to the client that 
      * requested the function.  this map is used all the time and when 
@@ -314,6 +318,8 @@ public class CSTAServer implements NetworkServer,Runnable{
         int listenerPort = 0 ;
         try{
             listenerPort = Integer.parseInt(theProps.getProperty("CSTASERVER_CLIENTLISTENER_PORT")) ;
+            setCSTA_username( theProps.getProperty("CSTA_USERNAME")) ;
+            setCSTA_password( theProps.getProperty("CSTA_PASSWORD")) ;
         }catch( NumberFormatException e ){
             alog.warn(e.toString() + " config file CSTASERVER_CLIENTLISTENER_PORT is not a number, using default port number which is hardcoded to 8996") ;
             listenerPort = 0 ;
@@ -910,5 +916,33 @@ public class CSTAServer implements NetworkServer,Runnable{
      */
     public static void setTimeStarted(Calendar aTimeStarted) {
         timeStarted = aTimeStarted;
+    }
+
+    /**
+     * @return the csta_username
+     */
+    public static String getCSTA_username() {
+        return CSTA_username;
+    }
+
+    /**
+     * @param aCsta_username the csta_username to set
+     */
+    public static void setCSTA_username(String aCSTA_username) {
+        CSTA_username = aCSTA_username;
+    }
+
+    /**
+     * @return the CSTA_password
+     */
+    public static String getCSTA_password() {
+        return CSTA_password;
+    }
+
+    /**
+     * @param aCSTA_password the CSTA_password to set
+     */
+    public static void setCSTA_password(String aCSTA_password) {
+        CSTA_password = aCSTA_password;
     }
 }
