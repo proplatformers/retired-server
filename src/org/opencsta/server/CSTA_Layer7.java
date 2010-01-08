@@ -868,4 +868,12 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
     public static void setTheProps(Properties aTheProps) {
         theProps = aTheProps;
     }
+
+    public String getCSTA_username(){
+        return server.getCSTA_username() ;
+    }
+
+    public String getCSTA_password(){
+        return server.getCSTA_password() ;
+    }
 }

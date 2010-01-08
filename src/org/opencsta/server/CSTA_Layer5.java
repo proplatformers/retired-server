@@ -196,10 +196,67 @@ public class CSTA_Layer5 implements CSTA_Layer_Interface, Runnable {
     //First step in the login process.
     private void sendLoginACSERequest(){
         alog.info("CSTA Link is active - sending ACSE Request") ;
-        char[] aCSEaarq = {0x60, 0x31, 0xa1, 0x07, 0x06, 0x05, 0x2b, 0x0c, 0x00, 0x81, 0x5a, 0x8a, 0x02, 0x06, 0x80, 0xac, 0x15, 0xa2,
-                +	0x13, 0xa0, 0x11, 0xa0, 0x0f, 0x04, 0x06, 0x41, 0x4d, 0x48, 0x4f, 0x53, 0x54, 0x04, 0x05, 0x37, 0x37, 0x37, 0x37, 0x37,
-                +	0xbe, 0x0b, 0x28, 0x09, 0xa0, 0x07, 0xa0, 0x05, 0x03, 0x03, 0x00, 0x10, 0x00} ;
-                String str_ACSE_req = new String(aCSEaarq) ;
+        String CSTA_username = layer7.getCSTA_username() ;
+        String CSTA_password = layer7.getCSTA_password() ;
+
+
+//THIS WAS THE ORIGINAL HARDCODED STUFF FOR THE SIEMENS HIPATH 3000.  THE FOLLOWING CODE REPLACES IT FOR AN ASTERISK PORT
+//        char[] aCSEaarq = {0x60, 0x31, 0xa1, 0x07, 0x06, 0x05, 0x2b, 0x0c, 0x00, 0x81, 0x5a, 0x8a, 0x02, 0x06, 0x80, 0xac, 0x15, 0xa2,
+//                +	0x13, 0xa0, 0x11, 0xa0, 0x0f, 0x04, 0x06, 0x41, 0x4d, 0x48, 0x4f, 0x53, 0x54, 0x04, 0x05, 0x37, 0x37, 0x37, 0x37, 0x37,
+//                +	0xbe, 0x0b, 0x28, 0x09, 0xa0, 0x07, 0xa0, 0x05, 0x03, 0x03, 0x00, 0x10, 0x00} ;
+
+
+        StringBuffer aCSEaarq = new StringBuffer() ;
+        StringBuffer upsb = new StringBuffer() ;
+
+        char[] lastparts = {0xbe, 0x0b, 0x28, 0x09, 0xa0, 0x07, 0xa0, 0x05, 0x03, 0x03, 0x00, 0x10, 0x00} ;
+        
+
+        int ulength = CSTA_username.length() ;
+        char[] uname = {0x04,(char)ulength} ;
+        upsb.append(new String(uname)) ;
+        for( int i = 0 ; i < CSTA_username.length() ; i++ ){
+            upsb.append(CSTA_username.charAt(i)) ;
+        }
+        int plength = CSTA_password.length() ;
+        char[] pword = {0x04,(char)plength} ;
+        upsb.append(new String(pword) );
+        for (int i = 0 ; i < CSTA_password.length() ; i++ ){
+            upsb.append(CSTA_password.charAt(i)) ;
+        }
+
+        int uplength = upsb.length() ;
+        char[] upcombo = {0xa0,(char)uplength} ;
+        upsb.insert(0, upcombo) ;
+
+        int uplength2 = upsb.length() ;
+        char[] upcombo2 = {0xa0,(char)uplength2} ;
+        upsb.insert(0, upcombo2) ;
+
+        int uplength3 = upsb.length() ;
+        char[] upcombo3 = {0xa2,(char)uplength3} ;
+        upsb.insert(0, upcombo3) ;
+
+
+        int uplength4 = upsb.length() ;
+        char[] upcombo4 = {0xac,(char)uplength4} ;
+        upsb.insert(0, upcombo4) ;
+
+
+        char[] firstparts = {0xa1, 0x07, 0x06, 0x05, 0x2b, 0x0c, 0x00, 0x81, 0x5a, 0x8a, 0x02, 0x06, 0x80};
+        aCSEaarq.append(new String(firstparts) ) ;
+        aCSEaarq.append(upsb) ;
+        aCSEaarq.append(new String(lastparts) ) ;
+
+        int sblength = aCSEaarq.length() ;
+        char[] header = {0x60, (char)sblength} ;
+        aCSEaarq.insert(0, header) ;
+
+
+
+
+
+        String str_ACSE_req = new String(aCSEaarq) ;
     	this.setLoginACSERequestSent(true) ;
     	str_ACSE_req = Wrap(str_ACSE_req) ;
         //add commands to the work list and let the link determine the speed

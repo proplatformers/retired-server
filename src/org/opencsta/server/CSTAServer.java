@@ -38,6 +38,7 @@ public class CSTAServer implements NetworkServer,Runnable{
     private static Calendar timeStarted ;
     private static String CSTA_username ;
     private static String CSTA_password ;
+    private int client_listener_port ;
 
 
     /**
@@ -188,8 +189,20 @@ public class CSTAServer implements NetworkServer,Runnable{
         return null ;
     }
 
+    private void setProperties(){
+        try{
+            setClient_listener_port(Integer.parseInt(theProps.getProperty("CSTASERVER_CLIENTLISTENER_PORT"))) ;
+            setCSTA_username( theProps.getProperty("CSTA_USERNAME")) ;
+            setCSTA_password( theProps.getProperty("CSTA_PASSWORD")) ;
+        }catch( NumberFormatException e ){
+            alog.warn(e.toString() + " config file CSTASERVER_CLIENTLISTENER_PORT is not a number, using default port number which is hardcoded to 8996") ;
+            setClient_listener_port(0) ;
+        }
+    }
+
     public void run(){
         setTimeStarted( Calendar.getInstance() ) ;
+        setProperties() ;
     	StartCSTAStack();
     	Init();
 //        while( isRunFlag() ){
@@ -315,17 +328,10 @@ public class CSTAServer implements NetworkServer,Runnable{
         xref_tmp = null ;
         layer7.ServerIntro(this, TDSserver);
         alog.info(this.getClass().getName() + " ready to start listening for client connections") ;
-        int listenerPort = 0 ;
-        try{
-            listenerPort = Integer.parseInt(theProps.getProperty("CSTASERVER_CLIENTLISTENER_PORT")) ;
-            setCSTA_username( theProps.getProperty("CSTA_USERNAME")) ;
-            setCSTA_password( theProps.getProperty("CSTA_PASSWORD")) ;
-        }catch( NumberFormatException e ){
-            alog.warn(e.toString() + " config file CSTASERVER_CLIENTLISTENER_PORT is not a number, using default port number which is hardcoded to 8996") ;
-            listenerPort = 0 ;
-        }
-        if( listenerPort != 0 ){
-            clientsConnectHere = new MVListeningThread(this,listenerPort) ;
+        setClient_listener_port(0);
+
+        if( getClient_listener_port() != 0 ){
+            clientsConnectHere = new MVListeningThread(this,getClient_listener_port()) ;
         }
         else{
             clientsConnectHere = new MVListeningThread(this) ;
@@ -944,5 +950,19 @@ public class CSTAServer implements NetworkServer,Runnable{
      */
     public static void setCSTA_password(String aCSTA_password) {
         CSTA_password = aCSTA_password;
+    }
+
+    /**
+     * @return the client_listener_port
+     */
+    public int getClient_listener_port() {
+        return client_listener_port;
+    }
+
+    /**
+     * @param client_listener_port the client_listener_port to set
+     */
+    public void setClient_listener_port(int client_listener_port) {
+        this.client_listener_port = client_listener_port;
     }
 }
