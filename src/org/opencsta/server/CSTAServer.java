@@ -328,7 +328,7 @@ public class CSTAServer implements NetworkServer,Runnable{
         xref_tmp = null ;
         layer7.ServerIntro(this, TDSserver);
         alog.info(this.getClass().getName() + " ready to start listening for client connections") ;
-        setClient_listener_port(0);
+        setProperties() ;
 
         if( getClient_listener_port() != 0 ){
             clientsConnectHere = new MVListeningThread(this,getClient_listener_port()) ;
