@@ -13,79 +13,125 @@ This file is part of Open CSTA.
 
     You should have received a copy of the GNU Lesser General Public License
     along with Open CSTA.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package au.com.mrvoip.serialport;
 
-//import org.opencsta.config.PropertiesController ;
-import java.util.Properties ;
+import java.util.Properties;
 import org.apache.log4j.*;
+
 /**
- *
- * @author  root 
+ * 
+ * @author chrismylonas
  */
 public class SerialConfigurator {
-    protected static Logger slog = Logger.getLogger(SerialConfigurator.class) ;
-    private String SPORT ;
-    private int BAUD_RATE ;
-    private String appName ;
-    private Properties theProps ;
-    private String APP_CONFIG_FILE ;
-  
-    
-    /** Creates a new instance of SerialStarter */
-    public SerialConfigurator(String appName, Properties _theProps) {
-        this.appName = appName.toUpperCase() ;
-        System.out.println("SerialConfigurator appName: " + this.appName) ;
-        String lowappName = appName.toLowerCase();
-        theProps = _theProps ;
-        Init() ;
-    }
-    
-    private void Init(){
-        setAPP_CONFIG_FILE(theProps.getProperty("APP_CONFIG_FILE"));
-        slog.info(this.getClass().getName() + " -> " + "Getting property: SERIALPORT_" + appName) ;
-        setSerialDeviceName( theProps.getProperty("SERIALPORT_" + appName) ) ;
-        slog.info(this.getClass().getName() + " -> " + "Getting property: SERIALPORT_" + appName + "_BAUDRATE") ;
-        setBaudRate( theProps.getProperty("SERIALPORT_" + appName + "_BAUDRATE") ) ;
-        slog.info(this.getClass().getName() + " -> " + "Setting serial port parameters  ---- OK.DONE ("+ this.getDeviceName()+"/"+this.getBaudRate()+")") ;
-    }
-            
-    private void setBaudRate(String baudrate){
-        try{
-            BAUD_RATE = Integer.valueOf(baudrate).intValue() ;
-            slog.info("Baud Rate set to: " + Integer.toString(BAUD_RATE)) ;
-        }catch(NumberFormatException e){
-            e.printStackTrace() ;
-            BAUD_RATE = 9600 ;//default to this value
-            slog.info("Baud Rate Defaulting to: " + Integer.toString(BAUD_RATE)) ;
-        }
-    }
-    
-    private void setSerialDeviceName(String name){
-        SPORT = name ;
-        slog.info("Serial Port set to: " + SPORT) ;
-    }
-    
-    public int getBaudRate(){
-        return BAUD_RATE ;
-    }
-    
-    public String getDeviceName(){
-        return SPORT ;
-    }
 
-    /**
-     * @return the APP_CONFIG_FILE
-     */
-    public String getAPP_CONFIG_FILE() {
-        return APP_CONFIG_FILE;
-    }
+	/**
+	 * 
+	 */
+	protected static Logger slog = Logger.getLogger(SerialConfigurator.class);
 
-    /**
-     * @param APP_CONFIG_FILE the APP_CONFIG_FILE to set
+	/**
+	 * 
+	 */
+	private String SPORT;
+
+	/**
+	 * 
+	 */
+	private int BAUD_RATE;
+
+	/**
+	 * 
+	 */
+	private String appName;
+
+	/**
+	 * 
+	 */
+	private Properties theProps;
+
+	/**
+	 * 
+	 */
+	private String APP_CONFIG_FILE;
+
+	/**
+	 * @param appName
+	 * @param _theProps
+	 */
+	public SerialConfigurator(String appName, Properties _theProps) {
+		this.appName = appName.toUpperCase();
+		System.out.println("SerialConfigurator appName: " + this.appName);
+		String lowappName = appName.toLowerCase();
+		theProps = _theProps;
+		Init();
+	}
+
+	/**
+     * 
      */
-    public void setAPP_CONFIG_FILE(String APP_CONFIG_FILE) {
-        this.APP_CONFIG_FILE = APP_CONFIG_FILE;
-    }
+	private void Init() {
+		setAPP_CONFIG_FILE(theProps.getProperty("APP_CONFIG_FILE"));
+		slog.info(this.getClass().getName() + " -> "
+				+ "Getting property: SERIALPORT_" + appName);
+		setSerialDeviceName(theProps.getProperty("SERIALPORT_" + appName));
+		slog.info(this.getClass().getName() + " -> "
+				+ "Getting property: SERIALPORT_" + appName + "_BAUDRATE");
+		setBaudRate(theProps.getProperty("SERIALPORT_" + appName + "_BAUDRATE"));
+		slog.info(this.getClass().getName() + " -> "
+				+ "Setting serial port parameters  ---- OK.DONE ("
+				+ this.getDeviceName() + "/" + this.getBaudRate() + ")");
+	}
+
+	/**
+	 * @param baudrate
+	 */
+	private void setBaudRate(String baudrate) {
+		try {
+			BAUD_RATE = Integer.valueOf(baudrate).intValue();
+			slog.info("Baud Rate set to: " + Integer.toString(BAUD_RATE));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			BAUD_RATE = 9600;// default to this value
+			slog.info("Baud Rate Defaulting to: " + Integer.toString(BAUD_RATE));
+		}
+	}
+
+	/**
+	 * @param name
+	 */
+	private void setSerialDeviceName(String name) {
+		SPORT = name;
+		slog.info("Serial Port set to: " + SPORT);
+	}
+
+	/**
+	 * @return
+	 */
+	public int getBaudRate() {
+		return BAUD_RATE;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getDeviceName() {
+		return SPORT;
+	}
+
+	/**
+	 * @return the APP_CONFIG_FILE
+	 */
+	public String getAPP_CONFIG_FILE() {
+		return APP_CONFIG_FILE;
+	}
+
+	/**
+	 * @param APP_CONFIG_FILE
+	 *            the APP_CONFIG_FILE to set
+	 */
+	public void setAPP_CONFIG_FILE(String APP_CONFIG_FILE) {
+		this.APP_CONFIG_FILE = APP_CONFIG_FILE;
+	}
 }

@@ -13,13 +13,19 @@ This file is part of Open CSTA.
 
     You should have received a copy of the GNU Lesser General Public License
     along with Open CSTA.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package au.com.mrvoip.serialport;
 
-
+/**
+ * @author chrismylonas
+ * 
+ */
 public interface SerialPortOwner {
-    
-    public boolean CheckReceived(StringBuffer curInStr) ;
-    
+
+	/**
+	 * @param curInStr
+	 * @return
+	 */
+	public boolean CheckReceived(StringBuffer curInStr);
 }

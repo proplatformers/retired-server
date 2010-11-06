@@ -13,15 +13,23 @@ This file is part of Open CSTA.
 
     You should have received a copy of the GNU Lesser General Public License
     along with Open CSTA.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.opencsta.link;
 
 /**
- *
- * @author cm
+ * 
+ * @author chrismylonas
  */
 public interface CSTA_Link_Interface {
-    public void newMessageIn(tmp_CSTATCPClient tcpclient) ;
-    public void commandIn(StringBuffer sb) ;
+
+	/**
+	 * @param tcpclient
+	 */
+	public void newMessageIn(tmp_CSTATCPClient tcpclient);
+
+	/**
+	 * @param sb
+	 */
+	public void commandIn(StringBuffer sb);
 }

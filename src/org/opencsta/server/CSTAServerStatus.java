@@ -13,91 +13,117 @@ This file is part of Open CSTA.
 
     You should have received a copy of the GNU Lesser General Public License
     along with Open CSTA.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.opencsta.server;
 
 /**
- *
- * @author cm
+ * 
+ * @author chrismylonas
  */
 public class CSTAServerStatus {
-    private boolean CSTAServerUp ;
-    private boolean CSTALinkUp ;
-    private int clientConnections ;
-    private int monitoredExtensions ;
 
-    /**
-     * @return the CSTAServerUp
+	/**
+     * 
      */
-    public boolean isCSTAServerUp() {
-        return CSTAServerUp;
-    }
+	private boolean CSTAServerUp;
 
-    /**
-     * @param CSTAServerUp the CSTAServerUp to set
+	/**
+     * 
      */
-    public void setCSTAServerUp(boolean CSTAServerUp) {
-        this.CSTAServerUp = CSTAServerUp;
-    }
+	private boolean CSTALinkUp;
 
-    /**
-     * @return the CSTALinkUp
+	/**
+     * 
      */
-    public boolean isCSTALinkUp() {
-        return CSTALinkUp;
-    }
+	private int clientConnections;
 
-    /**
-     * @param CSTALinkUp the CSTALinkUp to set
+	/**
+     * 
      */
-    public void setCSTALinkUp(boolean CSTALinkUp) {
-        this.CSTALinkUp = CSTALinkUp;
-    }
+	private int monitoredExtensions;
 
-    /**
-     * @return the clientConnections
-     */
-    public int getClientConnections() {
-        return clientConnections;
-    }
+	/**
+	 * @return the CSTAServerUp
+	 */
+	public boolean isCSTAServerUp() {
+		return CSTAServerUp;
+	}
 
-    /**
-     * @param clientConnections the clientConnections to set
-     */
-    public void setClientConnections(int clientConnections) {
-        this.clientConnections = clientConnections;
-    }
+	/**
+	 * @param CSTAServerUp
+	 *            the CSTAServerUp to set
+	 */
+	public void setCSTAServerUp(boolean CSTAServerUp) {
+		this.CSTAServerUp = CSTAServerUp;
+	}
 
-    /**
-     * @return the monitoredExtensions
-     */
-    public int getMonitoredExtensions() {
-        return monitoredExtensions;
-    }
+	/**
+	 * @return the CSTALinkUp
+	 */
+	public boolean isCSTALinkUp() {
+		return CSTALinkUp;
+	}
 
-    /**
-     * @param monitoredExtensions the monitoredExtensions to set
-     */
-    public void setMonitoredExtensions(int monitoredExtensions) {
-        this.monitoredExtensions = monitoredExtensions;
-    }
+	/**
+	 * @param CSTALinkUp
+	 *            the CSTALinkUp to set
+	 */
+	public void setCSTALinkUp(boolean CSTALinkUp) {
+		this.CSTALinkUp = CSTALinkUp;
+	}
 
-    public String toString(){
-        String str = "" ;
-        if( this.isCSTAServerUp() )
-            str += "CSTA Server is up and running\n" ;
-        else
-            str += "CSTA Server is not running correctly\n" ;
-        if( this.isCSTALinkUp() )
-            str += "CSTA Link is Up\n" ;
-        else
-            str += "CSTA Link is NOT up\n" ;
+	/**
+	 * @return the clientConnections
+	 */
+	public int getClientConnections() {
+		return clientConnections;
+	}
 
-        str += "Client connections is currently " + this.getClientConnections() +"\n";
-        str += "Devices monitored is currently " + this.getMonitoredExtensions() +"\n";
+	/**
+	 * @param clientConnections
+	 *            the clientConnections to set
+	 */
+	public void setClientConnections(int clientConnections) {
+		this.clientConnections = clientConnections;
+	}
 
+	/**
+	 * @return the monitoredExtensions
+	 */
+	public int getMonitoredExtensions() {
+		return monitoredExtensions;
+	}
 
-        return str ;
-    }
+	/**
+	 * @param monitoredExtensions
+	 *            the monitoredExtensions to set
+	 */
+	public void setMonitoredExtensions(int monitoredExtensions) {
+		this.monitoredExtensions = monitoredExtensions;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+		String str = "";
+		if (this.isCSTAServerUp())
+			str += "CSTA Server is up and running\n";
+		else
+			str += "CSTA Server is not running correctly\n";
+		if (this.isCSTALinkUp())
+			str += "CSTA Link is Up\n";
+		else
+			str += "CSTA Link is NOT up\n";
+
+		str += "Client connections is currently " + this.getClientConnections()
+				+ "\n";
+		str += "Devices monitored is currently "
+				+ this.getMonitoredExtensions() + "\n";
+
+		return str;
+	}
 }

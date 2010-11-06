@@ -13,7 +13,7 @@ This file is part of Open CSTA.
 
     You should have received a copy of the GNU Lesser General Public License
     along with Open CSTA.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.opencsta.link;
 
@@ -22,87 +22,128 @@ package org.opencsta.link;
 import java.net.Socket;
 import org.opencsta.net.TCPClientOwnerInterface;
 import org.opencsta.server.CSTA_Layer5;
+
 /**
- *
- * @author cm
+ * 
+ * @author chrismylonas
  */
-public class CSTA_Link_Siemens_Hipath3000_Network extends CSTA_Link implements TCPClientOwnerInterface{
+public class CSTA_Link_Siemens_Hipath3000_Network extends CSTA_Link implements
+		TCPClientOwnerInterface {
 
-    private CSTATCPClient tcp ;
-    
-    public CSTA_Link_Siemens_Hipath3000_Network(CSTA_Layer5 layer5){
-        super(layer5) ;
+	/**
+     * 
+     */
+	private CSTATCPClient tcp;
 
-    }
-    
-    @SuppressWarnings("static-access")
-    @Override
-    public void Init(){
-        tcp = new CSTATCPClient(this,layer5.getTheProps(),"CSTALINKTCP");
-        setLinkUp(true);
-        setLoginASN1ConnectorStartSent(true) ;
-        setLoginACSEAbortSent(false) ;
-        setLoginASN1ConnectorStartResponse(false) ;
-        setCurrentStatus(4);        
-    }
-    
-    @Override
-    public void threaden(){
-        alog.info(this.getClass().getName() + " getting CSTA Link Thread") ;
-        threadExecutor.execute(tcp) ;
-//        Thread aThread = getLinkThread() ;
-//        aThread = new Thread(tcp,"CSTA Network Link Thread");
-//        alog.info(this.getClass().getName() + " starting CSTA Link Thread" ) ;
-//        setLinkThread(aThread) ;
-//        aThread.start() ;
-    }
-    
-    @Override
-    public boolean sendCommand(StringBuffer line) {
-        tcp.Send(line);
-        return true ;
-    }
+	/**
+	 * @param layer5
+	 */
+	public CSTA_Link_Siemens_Hipath3000_Network(CSTA_Layer5 layer5) {
+		super(layer5);
+	}
 
-    public boolean PassedUp(StringBuffer curInStr) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.opencsta.link.CSTA_Link#Init()
+	 */
+	@SuppressWarnings("static-access")
+	@Override
+	public void Init() {
+		tcp = new CSTATCPClient(this, layer5.getTheProps(), "CSTALINKTCP");
+		setLinkUp(true);
+		setLoginASN1ConnectorStartSent(true);
+		setLoginACSEAbortSent(false);
+		setLoginASN1ConnectorStartResponse(false);
+		setCurrentStatus(4);
+	}
 
-    public void addWorkIN(StringBuffer str) {
-        layer5.addWorkIN(str);
-        notify();
-    }
-    
-    @Override
-    public void run(){
-//        while(isLinkUp()){
-//            //System.out.println("THIS RUN() METHOD IS IMPLEMENTED") ;
-//            try{
-//                synchronized(this){
-//                    //System.out.println("Layer2, wait") ;
-//                    wait(5000) ;
-//                }
-//            }catch(InterruptedException e){
-//                //System.out.println("Lower Layer Thread interrupted") ;
-//            }catch(NullPointerException e2){
-//            	e2.printStackTrace();
-//            }
-//            
-//            while( getSizeLayer5WorkOUT() > 0 ){
-//                //System.out.println("Getting layer5 work") ;
-//                StringBuffer newStrBuf ;
-//                newStrBuf = getLayer5OUTCommand() ;
-//                if( sendCommand( newStrBuf ) )
-//                    continue ;
-//            }
-//        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.opencsta.link.CSTA_Link#threaden()
+	 */
+	@Override
+	public void threaden() {
+		alog.info(this.getClass().getName() + " getting CSTA Link Thread");
+		threadExecutor.execute(tcp);
+		// Thread aThread = getLinkThread() ;
+		// aThread = new Thread(tcp,"CSTA Network Link Thread");
+		// alog.info(this.getClass().getName() + " starting CSTA Link Thread" )
+		// ;
+		// setLinkThread(aThread) ;
+		// aThread.start() ;
+	}
 
-    public Socket getSocket() {
-        return tcp.getSocket() ;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.opencsta.link.CSTA_Link#sendCommand(java.lang.StringBuffer)
+	 */
+	@Override
+	public boolean sendCommand(StringBuffer line) {
+		tcp.Send(line);
+		return true;
+	}
 
-    public void cstaFail() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	/**
+	 * @param curInStr
+	 * @return
+	 */
+	public boolean PassedUp(StringBuffer curInStr) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	/**
+	 * @param str
+	 */
+	public void addWorkIN(StringBuffer str) {
+		layer5.addWorkIN(str);
+		notify();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.opencsta.link.CSTA_Link#run()
+	 */
+	@Override
+	public void run() {
+		// while(isLinkUp()){
+		// //System.out.println("THIS RUN() METHOD IS IMPLEMENTED") ;
+		// try{
+		// synchronized(this){
+		// //System.out.println("Layer2, wait") ;
+		// wait(5000) ;
+		// }
+		// }catch(InterruptedException e){
+		// //System.out.println("Lower Layer Thread interrupted") ;
+		// }catch(NullPointerException e2){
+		// e2.printStackTrace();
+		// }
+		//
+		// while( getSizeLayer5WorkOUT() > 0 ){
+		// //System.out.println("Getting layer5 work") ;
+		// StringBuffer newStrBuf ;
+		// newStrBuf = getLayer5OUTCommand() ;
+		// if( sendCommand( newStrBuf ) )
+		// continue ;
+		// }
+		// }
+	}
+
+	/**
+	 * @return
+	 */
+	public Socket getSocket() {
+		return tcp.getSocket();
+	}
+
+	/**
+     * 
+     */
+	public void cstaFail() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 
 }

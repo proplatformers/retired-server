@@ -13,22 +13,23 @@ This file is part of Open CSTA.
 
     You should have received a copy of the GNU Lesser General Public License
     along with Open CSTA.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.opencsta.server;
 
 /**
- *
- * @author cm
+ * 
+ * @author chrismylonas
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        CSTAServer cserver = new CSTAServer() ;
-        cserver.run() ;
-    }
+	/**
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+		CSTAServer cserver = new CSTAServer();
+		cserver.run();
+	}
 
 }
