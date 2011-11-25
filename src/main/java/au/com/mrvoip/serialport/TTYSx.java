@@ -27,6 +27,7 @@ import org.opencsta.communications.CommunicationsStream;
  * @author chrismylonas
  * 
  */
+@SuppressWarnings("restriction")
 public class TTYSx implements CommPortOwnershipListener,
 		SerialPortEventListener, CommunicationsStream {
 
