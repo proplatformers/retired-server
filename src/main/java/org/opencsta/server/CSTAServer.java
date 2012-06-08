@@ -21,13 +21,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
-import org.apache.log4j.*;
-import org.opencsta.net.ServeOneClient;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
+
 import org.opencsta.net.MVListeningThread;
 import org.opencsta.net.NetworkServer;
+import org.opencsta.net.ServeOneClient;
 import org.opencsta.servicedescription.objects.cstaparamtypes.deviceidentifiers.DeviceID;
 import org.opencsta.servicedescription.objects.cstaparamtypes.statusreporting.MonitorCrossRefID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author chrismylonas
@@ -38,7 +45,7 @@ public class CSTAServer implements NetworkServer, Runnable {
 	/**
 	 * 
 	 */
-	protected static Logger alog = Logger.getLogger(CSTAServer.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTAServer.class);
 
 	/**
 	 * 

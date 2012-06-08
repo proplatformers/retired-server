@@ -17,8 +17,6 @@ This file is part of Open CSTA.
 
 package org.opencsta.link;
 
-//import org.opencsta.link.CSTA_Link ;
-//import org.opencsta.net.TCPClient;
 import java.net.Socket;
 import org.opencsta.net.TCPClientOwnerInterface;
 import org.opencsta.server.CSTA_Layer5;

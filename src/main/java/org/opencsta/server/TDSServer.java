@@ -17,10 +17,14 @@ This file is part of Open CSTA.
 
 package org.opencsta.server;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.opencsta.net.ServeOneClient;
-//import org.opencsta.net.MVListeningThread ;
-import org.apache.log4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -31,7 +35,7 @@ public class TDSServer {
 	/**
      * 
      */
-	protected static Logger alog = Logger.getLogger(CSTAServer.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTAServer.class);
 
 	/**
      *

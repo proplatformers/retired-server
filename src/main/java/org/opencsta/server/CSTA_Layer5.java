@@ -20,19 +20,17 @@ package org.opencsta.server;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.Socket;
-import org.opencsta.link.CSTA_Link_Siemens_Hipath3000_Serial;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
 import java.util.Properties;
-import org.apache.log4j.Logger;
-//import org.opencsta.config.PropertiesController;
+
 import org.opencsta.link.CSTA_Link;
 import org.opencsta.link.CSTA_Link_Siemens_Hipath3000_Network;
 import org.opencsta.link.CSTA_Link_Siemens_Hipath3000_Serial;
 import org.opencsta.servicedescription.common.helpers.CSTA_Layer_Interface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author chrismylonas
@@ -43,7 +41,7 @@ public class CSTA_Layer5 implements CSTA_Layer_Interface, Runnable {
 	/**
 	 * 
 	 */
-	protected static Logger alog = Logger.getLogger(CSTAServer.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTAServer.class);
 
 	/**
 	 * 

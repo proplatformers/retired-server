@@ -18,7 +18,9 @@ This file is part of Open CSTA.
 package au.com.mrvoip.serialport;
 
 import java.util.Properties;
-import org.apache.log4j.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -29,7 +31,7 @@ public class SerialConfigurator {
 	/**
 	 * 
 	 */
-	protected static Logger slog = Logger.getLogger(SerialConfigurator.class);
+	protected static Logger slog = LoggerFactory.getLogger(SerialConfigurator.class);
 
 	/**
 	 * 

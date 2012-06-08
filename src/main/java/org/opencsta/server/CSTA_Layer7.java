@@ -18,13 +18,15 @@ This file is part of Open CSTA.
 package org.opencsta.server;
 
 import java.util.Properties;
-import org.apache.log4j.*;
+
 import org.opencsta.servicedescription.callcontrol.events.CallEvent_Base;
 import org.opencsta.servicedescription.common.helpers.CSTA_Layer_7_Common;
 import org.opencsta.servicedescription.common.helpers.CallEventHandler;
 import org.opencsta.servicedescription.common.helpers.LogicalDeviceFeatureEventHandler;
 import org.opencsta.servicedescription.ioservices.IOServices;
 import org.opencsta.servicedescription.logicaldevicefeatures.events.AgentEvent_Base;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author chrismylonas
@@ -35,7 +37,7 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 	/**
      * 
      */
-	protected static Logger alog = Logger.getLogger(CSTAServer.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTAServer.class);
 
 	/**
      * 

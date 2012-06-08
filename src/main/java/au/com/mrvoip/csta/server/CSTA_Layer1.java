@@ -17,15 +17,16 @@ This file is part of Open CSTA.
 
 package au.com.mrvoip.csta.server;
 
-import au.com.mrvoip.serialport.*;
-//import java.util.Enumeration;
-//import org.opencsta.config.PropertiesController ;
 import java.util.Properties;
+
 import org.opencsta.communications.CommunicationsStream;
-//import java.util.logging.Level ;
-//import java.util.logging.Logger ;
-import org.apache.log4j.*;
 import org.opencsta.link.CSTA_Link;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import au.com.mrvoip.serialport.SerialConfigurator;
+import au.com.mrvoip.serialport.SerialPortOwner;
+import au.com.mrvoip.serialport.TTYSx;
 
 /**
  * OS-CSTA-DD1: The physical layer in the CSTA protocol stack. This represents
@@ -72,7 +73,7 @@ public class CSTA_Layer1 implements SerialPortOwner, CommunicationsStream {
      *
      *
      */
-	protected static Logger alog = Logger.getLogger(CSTA_Link.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTA_Link.class);
 
 	/**
 	 * Creates a new instance of CSTA_Layer1

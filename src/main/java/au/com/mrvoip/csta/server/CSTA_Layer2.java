@@ -17,15 +17,15 @@ This file is part of Open CSTA.
 
 package au.com.mrvoip.csta.server;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Properties;
-import org.apache.log4j.*;
 
-//import org.opencsta.config.PropertiesController ;
 import org.opencsta.communications.CommunicationsStream;
 import org.opencsta.link.CSTA_Link;
 import org.opencsta.link.CSTA_Link_Serial;
 import org.opencsta.servicedescription.common.helpers.CSTA_Layer_Interface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * OS-CSTA-DD1: The data-link layer in the CSTA protocol stack
@@ -42,12 +42,12 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 	/**
 	 * 
 	 */
-	protected static Logger alog = Logger.getLogger(CSTA_Link.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTA_Link.class);
 
 	/**
 	 * 
 	 */
-	protected static Logger cstalog = Logger.getLogger(CSTA_Layer2.class);
+	protected static Logger cstalog = LoggerFactory.getLogger(CSTA_Layer2.class);
 
 	/**
 	 * 

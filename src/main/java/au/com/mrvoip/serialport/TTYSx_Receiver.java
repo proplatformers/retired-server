@@ -17,8 +17,10 @@ This file is part of Open CSTA.
 
 package au.com.mrvoip.serialport;
 
-import java.io.*;
-import org.apache.log4j.*;
+import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author chrismylonas
@@ -29,7 +31,7 @@ public class TTYSx_Receiver implements Runnable {
 	/**
 	 * 
 	 */
-	protected static Logger slog = Logger.getLogger(SerialConfigurator.class);
+	protected static Logger slog = LoggerFactory.getLogger(SerialConfigurator.class);
 
 	/**
 	 * 

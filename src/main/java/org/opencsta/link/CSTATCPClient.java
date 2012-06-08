@@ -17,10 +17,15 @@ This file is part of Open CSTA.
 
 package org.opencsta.link;
 
-import java.net.*;
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Properties;
-import org.apache.log4j.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * TCPClient is the client side network communications class that connects to
@@ -33,7 +38,7 @@ public class CSTATCPClient implements Runnable {
 	/**
 	 * 
 	 */
-	protected Logger clientlog = Logger.getLogger(CSTATCPClient.class);
+	protected Logger clientlog = LoggerFactory.getLogger(CSTATCPClient.class);
 
 	/**
 	 * 

@@ -17,11 +17,23 @@ This file is part of Open CSTA.
 
 package au.com.mrvoip.serialport;
 
-import gnu.io.*;
-import java.io.*;
-import java.util.*;
-import org.apache.log4j.*;
+import gnu.io.CommPortIdentifier;
+import gnu.io.CommPortOwnershipListener;
+import gnu.io.NoSuchPortException;
+import gnu.io.PortInUseException;
+import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+import gnu.io.UnsupportedCommOperationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.TooManyListenersException;
+
 import org.opencsta.communications.CommunicationsStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author chrismylonas
@@ -34,7 +46,7 @@ public class TTYSx implements CommPortOwnershipListener,
 	/**
 	 * 
 	 */
-	protected static Logger slog = Logger.getLogger(SerialConfigurator.class);
+	protected static Logger slog = LoggerFactory.getLogger(SerialConfigurator.class);
 
 	/**
 	 * 

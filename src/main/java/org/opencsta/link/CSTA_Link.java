@@ -20,9 +20,11 @@ package org.opencsta.link;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.apache.log4j.Logger;
+
 import org.opencsta.server.CSTAServer;
 import org.opencsta.server.CSTA_Layer5;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -33,7 +35,7 @@ public abstract class CSTA_Link implements Runnable, CSTA_Link_Interface {
 	/**
 	 * 
 	 */
-	protected static Logger alog = Logger.getLogger(CSTAServer.class);
+	protected static Logger alog = LoggerFactory.getLogger(CSTAServer.class);
 
 	/**
 	 * 
