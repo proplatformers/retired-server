@@ -67,12 +67,6 @@ public class CSTA_Link_Siemens_Hipath3000_Network extends CSTA_Link implements
 	public void threaden() {
 		alog.info(this.getClass().getName() + " getting CSTA Link Thread");
 		threadExecutor.execute(tcp);
-		// Thread aThread = getLinkThread() ;
-		// aThread = new Thread(tcp,"CSTA Network Link Thread");
-		// alog.info(this.getClass().getName() + " starting CSTA Link Thread" )
-		// ;
-		// setLinkThread(aThread) ;
-		// aThread.start() ;
 	}
 
 	/*

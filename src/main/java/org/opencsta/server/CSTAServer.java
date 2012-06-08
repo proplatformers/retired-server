@@ -610,7 +610,6 @@ public class CSTAServer implements NetworkServer, Runnable {
 						return;
 					} else
 						/* This is a problem if it gets to here */
-						// System.out.println("Client not added. Line 249") ;
 						alog.warn(this.getClass().getName()
 								+ " Client not added for some reason.  'Line 249'");
 				}
@@ -649,7 +648,7 @@ public class CSTAServer implements NetworkServer, Runnable {
 				}
 				// now call a start monitor csta function and send it down the
 				// stack
-				// str = layer7.CallControl_Services_MonitorStart2(ext) ;
+
 				if (sortOfMonitor == 0x46)
 					str = layer7.MonitorStart_SI_CC_only(newDeviceToMonitor
 							.getValue());
@@ -777,7 +776,6 @@ public class CSTAServer implements NetworkServer, Runnable {
 	 *            event is attributed to
 	 */
 	public void EventToClient(StringBuffer str, MonitorCrossRefID xref) {
-		// throws NullPointerException
 		ServeOneClient client;
 		List<ServeOneClient> list;
 
@@ -992,7 +990,6 @@ public class CSTAServer implements NetworkServer, Runnable {
 							 * Call A stop monitor on this extension/xref, then
 							 * remove this entry from the relevant maps
 							 */
-							// System.out.println("Call a Stop Monitor") ;
 							StringBuffer str = layer7
 									.CallControl_Services_MonitorStop(xref
 											.getValue());

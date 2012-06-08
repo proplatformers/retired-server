@@ -153,7 +153,9 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 		return da;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
@@ -524,7 +526,6 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 			// the one that is missing the acknowledgement
 			successfullySent = true;// get out of while loop for the old send
 			enqSent = false;
-			// SendStringL2(lastSentString) ;
 			new tmp_Layer2_ENQ((CSTA_Link_Serial) link, lastSentString);
 		} else if (!just_in && !lastRecACK) {
 			// this ACK is the same as the last one we successfully received
@@ -532,7 +533,6 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 			// the one htat is missing the acknowledgement
 			successfullySent = true;// get out of while loop for the old send
 			enqSent = false;
-			// SendStringL2(lastSentString) ;
 			new tmp_Layer2_ENQ((CSTA_Link_Serial) link, lastSentString);
 		} else {
 			// the ACK just received does not match the last one we noted we
@@ -553,8 +553,7 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 	 * @return
 	 * @param input
 	 */
-	public boolean CheckReceived(StringBuffer input) { // System.out.println("\t\tLayer2 checkreceived")
-														// ;
+	public boolean CheckReceived(StringBuffer input) {
 		int length = input.length();
 		if (length == 1 && input.charAt(length - 1) == NAK) {
 			alog.warn("***RECEIVED NAK***");
@@ -567,7 +566,6 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 			if (input.charAt(length - 1) == 0x30) {
 				if (enqSent) {
 					lastWasDLE = false;
-					// lastRecACK = false ;
 					return MatchENQsAndACKs(false);// false == 0x30
 				} else {
 					lastWasDLE = false;
@@ -586,11 +584,7 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 							}
 						}
 					}
-					ReceivedACK(input);// CHANGE TO return ReceivedACK(boolean)
-										// ;
-					// WOW ANOTHER OLD COMMENT (NOV2010) - prolly when
-					// the processors were 266 - 500 MHz and celerons or P3
-					// CHANGE TO A BOOLEAN SEND, TO REDUCE COMPUTING
+					ReceivedACK(input);
 				}
 				return true;
 			} else if (input.charAt(length - 1) == 0x31) {
@@ -613,9 +607,7 @@ public class CSTA_Layer2 implements CSTA_Layer_Interface, Runnable {
 							alog.info("<Layer 2> " + link.getStatus());
 						}
 					}
-					ReceivedACK(input);// CHANGE TO return ReceivedACK(boolean)
-										// ;
-					// CHANGE TO A BOOLEAN SEND, TO REDUCE COMPUTING
+					ReceivedACK(input);
 				}
 				return true;
 			}

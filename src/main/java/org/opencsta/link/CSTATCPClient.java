@@ -306,33 +306,14 @@ public class CSTATCPClient implements Runnable {
 			} else if (isBufferStillReading(chris)) {
 				clientlog.info(this.getClass().getName()
 						+ "Buffer is still reading");
-				// System.out.println("Incoming Buffer is still reading");
-				// System.out.println("The length of chris at the moment is: " +
-				// Integer.toString(chris.length() ) );
-				// System.out.println("The length of chris full message should be (hex): "
-				// + Integer.toHexString( (int)chris.charAt(2)) ) ;
-				// System.out.println("The length of chris full message should be (dec): "
-				// + Integer.toString( chris.charAt(2)) ) ;
 			} else if (isBufferHoldingMoreThanOneMessage(chris)) {
 				clientlog.info(this.getClass().getName()
 						+ "Buffer is holding more than one message");
-				// System.out.println("Incoming Buffer has over read more than one message")
-				// ;
-				// System.out.println("The length of chris at the moment is: " +
-				// Integer.toString(chris.length() ) );
-				// System.out.println("The length of chris full message should be (hex): "
-				// + Integer.toHexString( (int)chris.charAt(2)) ) ;
-				// System.out.println("The length of chris full message should be (dec): "
-				// + Integer.toString( chris.charAt(2)) ) ;
 				StringBuffer tmp = new StringBuffer(chris.substring(0,
 						(((int) chris.charAt(2)) + 3)));
-				// System.out.println("Test this tmp string") ;
-				// TestChris(tmp) ;
 				parent.newMessageIn(new tmp_CSTATCPClient(parent,
 						new StringBuffer(chris.substring(0,
 								(((int) chris.charAt(2)) + 3)))));
-				// parent.addWorkIN(new StringBuffer( chris.substring(0,
-				// (((int)chris.charAt(2)) + 3)) )) ;
 				chris = new StringBuffer(
 						chris.substring(((int) chris.charAt(2) + 3)));
 				checkBuffer();
@@ -347,27 +328,20 @@ public class CSTATCPClient implements Runnable {
 	private String ReplaceDLEwithDLEDLEandWrap(String curOutStr) {
 		char DLEa = '\u0010';
 		char ETX = '\u0003';
-		// StringBuffer tmp = new StringBuffer(curOutStr) ;
 		StringBuffer curOutStr2 = new StringBuffer();
 		char[] tmpDLE = { DLEa };
 		String DLEasSTR = new String(tmpDLE);
-		// int tmpDLEcount = 0 ;
 		int length = curOutStr.length();
 		for (int i = 0; i < length; i++) {
 			if (curOutStr.charAt(i) == DLEa) {
-				// tmp = tmp.insert(i, DLEasSTR) ;
 				curOutStr2 = curOutStr2.append(DLEasSTR);
-				// tmpDLEcount++ ;
 			} else
 				;
 
 			curOutStr2 = curOutStr2.append(curOutStr.charAt(i));
 		}
-		// curOutStr = tmp.toString() ;
 		char[] dleetx = { DLEa, ETX };
 		String DLEETX = new String(dleetx);
-		// curOutStr = curOutStr + DLEETX ;
-		// StringContains(curOutStr) ;
 		curOutStr2 = curOutStr2.append(DLEETX);
 		return curOutStr2.toString();
 	}
@@ -425,11 +399,9 @@ public class CSTATCPClient implements Runnable {
 	 * @param cm
 	 */
 	public void TestChris(StringBuffer cm) {
-		// System.out.print("Client <--- Server | R: ") ;
 		for (int i = 0; i < cm.length(); i++) {
 			System.out.print(Integer.toHexString((char) cm.charAt(i)) + " ");
 		}
-		// System.out.println("") ;
 	}
 
 	/**

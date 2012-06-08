@@ -241,7 +241,6 @@ public class IOServices extends CSTA_Layer_7_Common {
 			length -= 2;
 			tmp_ioXref = curInStr.substring(4, (4 + length));
 		}
-		// TEST.StringContains(tmp_ioXref, "Stop Data on ioCrossRef:") ;
 	}
 
 	/**
@@ -254,15 +253,12 @@ public class IOServices extends CSTA_Layer_7_Common {
 	 */
 	public void StartDataPathResponse(String device, String TDScode,
 			String inv_id) {
-		// System.out.println("Start Data Path Response") ;
 		StringBuffer strbuf = new StringBuffer();
 		char[] id_0 = { INTEGER, 0x01, 0x6E };
 		String id = new String(id_0);
 
 		String ioXref = IOCrossRefGeneration();
 		int length = ioXref.length();
-		// System.out.println("Length of the IOCROSSREF: " +
-		// Integer.toString(length)) ;
 		strbuf = strbuf.insert(0, ioXref).insert(0, (char) length)
 				.insert(0, (char) 0x04);
 		length += 2;
@@ -275,13 +271,10 @@ public class IOServices extends CSTA_Layer_7_Common {
 		 * 0x03, 0x04, 0x01, 0x01} ; String as = new String(asdf) ; strbuf =
 		 * strbuf.insert(0, as) ;
 		 */
-		// TEST.StringContains(inv_id, "TDS response invoke id" ) ;
-		// TEST.StringContains(ioXref, "IO Cross Ref id") ;
 		TDSserver.NewTDStransmission(ioXref, device, TDScode);
 		length = inv_id.length();
 		strbuf = strbuf.insert(0, inv_id).insert(0, (char) length)
 				.insert(0, (char) 0x02);
-		// System.out.println("TDS: sending response to TDS request") ;
 		layer7.Wrap2(strbuf);
 		if (earlyTermination)
 			;// StopDataPath(ioXref) ;
@@ -295,7 +288,6 @@ public class IOServices extends CSTA_Layer_7_Common {
 	 * @param invoke_id_ref
 	 */
 	public void TDSSendDataReceived(StringBuffer curInStr, String invoke_id_ref) {
-		// System.out.println("TDS Send Data Received") ;
 		String ioXref = null;
 		String dataSent = null;
 
@@ -324,10 +316,6 @@ public class IOServices extends CSTA_Layer_7_Common {
 		}
 		if (curInStr.length() != 0)
 			System.out.println("SendDataReceived, end of data - still more");
-
-		// TEST.StringContains(ioXref,"IO Cross Ref ID") ;
-		// TEST.StringContains(dataSent,"Data") ;
-		// 09mayTDSserver.SendData(ioXref, dataSent) ;
 
 		// MUST SEND THE DATA THAT WAS 'DATA-ED' TO THE CLIENT, SO THE
 		// APPLICATION

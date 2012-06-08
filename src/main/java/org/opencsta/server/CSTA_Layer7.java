@@ -198,9 +198,7 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 
 		if (curInStr.charAt(0) == 0xA1) {
 			alog.info("Received a CSTA Event, Agent Event or TDS Data Event");
-			// curInStr = curInStr.deleteCharAt(0).deleteCharAt(0) ;
-			;// if( curInStr.charAt(0) != 0x02 )
-				// curInStr = curInStr.deleteCharAt(0) ;
+			;
 		}
 		if (curInStr.charAt(0) == 0xA2 || curInStr.charAt(0) == 0xA3
 				|| curInStr.charAt(0) == 0xA4) {
@@ -216,8 +214,6 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 				alog.warn("Server is null");
 			}
 			server.ToClient(wholeReceivedLayer7String, invoke_id_ref);
-			// System.out.println("Layer7->server.ToClient()") ;
-			// general_log.log(Level.INFO,"Layer 7 -> server.ToClient()") ;
 		}
 		return WorkString(curInStr);
 	}
@@ -235,11 +231,9 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 		// Format for this method to work needs to be:
 		// 0x02 0x0X 0xvalue
 		int length = (int) curInStr.charAt(1);
-		// System.out.println("Getting INVOKE ID TO A STRING") ;
 		String invoke_id = curInStr.substring(2, (2 + length));
 		// 2 is the start index,length = length & +1 is cos it is exclusive.
 		invoke_id_ref = invoke_id;
-		// System.out.println("invoke_id_ref: " + invoke_id_ref) ;
 
 		curInStr = DeleteChars(curInStr, (2 + length));
 		return curInStr;
@@ -267,8 +261,6 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 			}
 
 			else if (curInStr.charAt(0) == 0x02) {// WHICH SERVICE ITIS
-				// System.out.println("Service ID ") ;
-
 				int length = (int) curInStr.charAt(1);
 
 				if (curInStr.charAt(2) == 0x15) {// CSTA EVENT
@@ -316,7 +308,6 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 					curInStr = DeleteChars(curInStr, (4 + length));
 				}
 			} else if (curInStr.charAt(0) == 0x55) {
-				// System.out.println("RECEIVED 0x55") ;
 				curInStr = new StringBuffer();
 			} else if (curInStr.charAt(0) == 0x80) {
 				int length = (int) curInStr.charAt(1);
@@ -340,9 +331,6 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 	 */
 	private void CSTAEventReceived(StringBuffer curInStr) {
 
-		// System.out.println("\n\nCSTAEventReceived!!!\n\n") ;
-
-		// curInStr = DeleteChars(curInStr, 3) ;
 		if (curInStr.charAt(0) == 0x30) {
 			curInStr = CheckLengthAndStrip(curInStr, 2);
 		}
@@ -356,16 +344,9 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 			server.EventToClient(curInStr, xRef);
 			curInStr = DeleteChars(curInStr, 4);
 		} else
-			// System.out.println("PROBLEM WITH A SHOULD-BE 0x55") ;
 			alog.warn("Problem with a should-be 0x55");
 
-		// TEST.StringContains(curInStr, "EVENT::CharAt(0)==0xA0") ;
 		if (curInStr.charAt(0) == 0xA0) {// call event
-			// RM13MARCH - re: LLFU
-			// if( curInStr.charAt(1) == 0x82 )
-			// curInStr = DeleteChars(curInStr, 4) ;
-			// else
-			// curInStr = DeleteChars(curInStr, 2) ;
 			curInStr = CheckLengthAndStrip(curInStr, 2);
 			CallEvent_Base currentEvent = callEventHandler.WorkEvent(curInStr);
 			try {
@@ -637,10 +618,6 @@ public class CSTA_Layer7 extends CSTA_Layer_7_Common {
 	 * @deprecated maybe time to look at these old methods again
 	 */
 	public void TDSEarlyTerminationData(String dev, String TDScode) {
-		// StringBuffer sb = new StringBuffer() ;
-		// sb = Device(sb, "200") ;
-		// int length = TDScode.length() ;
-		// sb = sb.append(0x81).append(0x01).append(TDScode) ;
 		TDSserver.TDSEarlyTerminationDataToClients(dev, TDScode);
 	}
 

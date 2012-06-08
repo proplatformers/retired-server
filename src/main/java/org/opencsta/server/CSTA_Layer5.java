@@ -105,8 +105,6 @@ public class CSTA_Layer5 implements CSTA_Layer_Interface, Runnable {
      */
 	private CSTA_Link link;
 
-	// @todo fix up this link thread bizo - chuck it into csta link implm.
-	// class.
 
 	/**
      * 
@@ -392,8 +390,6 @@ public class CSTA_Layer5 implements CSTA_Layer_Interface, Runnable {
 			curInStr = Strip(curInStr);
 
 		if (isLoggedIn()) {
-			// strip 3 digits, pass up to layer 7
-			// curInStr = Strip(curInStr) ;
 			layer7.FromBelow(curInStr);
 		} else {
 
